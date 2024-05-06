@@ -1,0 +1,13 @@
+services:
+  app:
+    build: ./app
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
