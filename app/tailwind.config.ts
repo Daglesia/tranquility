@@ -7,5 +7,11 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   plugins: [],
+  theme: {
+    fontSize: {
+      h1: ['3.75rem', '5.25rem'],
+      h2: ['2.25rem', '3.25rem'],
+    }
+  }
 };
 export default config;

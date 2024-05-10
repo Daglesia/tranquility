@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { M_PLUS_1p } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import "@/styles/globals.css";
+import "@/styles/typography.css";
+
+const font = M_PLUS_1p({ subsets: ["latin"], weight: ["100","300","400","700"] });
 
 export const metadata: Metadata = {
   title: "Daglesium",
@@ -16,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
