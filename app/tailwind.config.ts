@@ -9,8 +9,10 @@ const config: Config = {
   plugins: [],
   theme: {
     fontSize: {
+      p: ['1rem', '1rem'],
       h1: ['3.75rem', '5.25rem'],
       h2: ['2.25rem', '3.25rem'],
+      h3: ['1.5rem', '1.5rem']
     }
   }
 };

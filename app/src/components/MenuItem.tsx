@@ -11,8 +11,8 @@ export default function MenuItem({title, label, imageSrc}: MenuItemProps) {
               className="max-w-12"
             />
             <div className="flex flex-col justify-center">
-                <p>{label}</p>
-                <p>{title}</p>
+                <p className="text-p">{label}</p>
+                <p className="text-h3 font-extrabold">{title}</p>
             </div>
     </div>
   );
