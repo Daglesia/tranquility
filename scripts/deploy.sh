@@ -22,5 +22,5 @@ docker container rm -f $OLD_CONTAINER
 docker compose up -d --no-deps --scale app=1 --no-recreate app
 
 echo "$(date --utc +%FT%TZ) // Reloading caddy"
-CADDY_CONTAINER=$(docker ls -aqf "name=caddy")
+CADDY_CONTAINER=$(docker ps -aqf "name=caddy")
 docker exec $CADDY_CONTAINER caddy reload -c /etc/caddy/Caddyfile
