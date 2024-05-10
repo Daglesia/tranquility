@@ -3,3 +3,7 @@ export interface MenuItemProps {
     label: string,
     imageSrc: string,
 }
+
+export interface ButtonProps {
+    text: string,
+}

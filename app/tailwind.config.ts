@@ -13,7 +13,14 @@ const config: Config = {
       h1: ['3.75rem', '5.25rem'],
       h2: ['2.25rem', '3.25rem'],
       h3: ['1.5rem', '1.5rem']
+    },
+    extend: {
+      colors: {
+        "tranquility__primary": "#83DEF0",
+        "tranquility__contrast": "#52DE7E",
+        "tranquility__background": "#151515",
+      }
     }
-  }
+  },
 };
 export default config;
