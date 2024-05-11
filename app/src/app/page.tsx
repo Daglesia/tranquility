@@ -1,13 +1,13 @@
 import Logo from "@/assets/daglesium.svg";
 import MenuItem from "@/components/MenuItem";
 import Button from "@/components/Button";
-import Nebula from "@/components/Nebula";
+import Clouds from "@/components/Clouds";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="absolute h-full w-full">
-        <Nebula/>
+        <Clouds />
       </div>
       <div className="z-10 w-full">
         <div className="absolute left-12 top-12">

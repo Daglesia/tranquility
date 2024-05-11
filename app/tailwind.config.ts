@@ -18,7 +18,7 @@ const config: Config = {
       colors: {
         "tranquility__primary": "#83DEF0",
         "tranquility__contrast": "#52DE7E",
-        "tranquility__background": "#151515",
+        "tranquility__background": "#202020",
       },
       animation: {
         gradient: 'animatedgradient 6s ease infinite alternate',

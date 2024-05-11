@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --color--common__background: #151515;
+  --color--common__background: #202020;
   --color--common__background-variant: #1B1B1B;
   --color--common__background-light: #282828;
 
@@ -13,7 +13,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color--common__background: #151515;
+    --color--common__background: #202020;
     --color--common__background-variant: #1B1B1B;
     --color--common__background-light: #282828;
     
