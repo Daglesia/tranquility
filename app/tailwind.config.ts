@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { createThemes } from 'tw-colors';
 
 const config: Config = {
   content: [
@@ -6,7 +7,22 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  plugins: [],
+  plugins: [
+    createThemes({
+      default: {
+        'primary': '#83DEF0',
+        'background': '#202020',
+        'secondary': '#52DE7E',
+        'secondary__variant--dark': '#5DBE7B',
+      },
+      grasp: {
+        'primary': '#0ABFAD',
+        'background': '#202020',
+        'secondary': '#027373',
+        'secondary__variant--dark': '#025159',
+      }
+    })
+  ],
   theme: {
     fontSize: {
       p: ['1rem', '1rem'],
@@ -15,11 +31,6 @@ const config: Config = {
       h3: ['1.5rem', '1.5rem']
     },
     extend: {
-      colors: {
-        "tranquility__primary": "#83DEF0",
-        "tranquility__contrast": "#52DE7E",
-        "tranquility__background": "#202020",
-      },
       animation: {
         gradient: 'animatedgradient 6s ease infinite alternate',
       },

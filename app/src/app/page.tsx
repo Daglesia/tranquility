@@ -18,10 +18,10 @@ export default function Home() {
             <h1 className="text-h1 font-extrabold tracking-tighter">It’s time to stop the mundane.<br />
               Let’s automate it together.</h1>
             <h2 className="text-h2 font-normal">Monitor and automate daily chores.<br />
-              Completely <span className="bg-gradient-to-r from-tranquility__primary to-tranquility__contrast inline-block text-transparent bg-clip-text animate-gradient bg-300%">free</span>.</h2>
+              Completely <span className="bg-gradient-to-r from-primary via-secondary__variant-dark to-secondary inline-block text-transparent bg-clip-text animate-gradient bg-300%">free</span>.</h2>
             <div className="w-fit self-center mt-14 flex flex-col gap-2">
               <Button text={"Check it out!"} />
-              <p className="text-p text-tranquility__contrast text-center font-extrabold">No registration needed!</p>
+              <p className="text-p text-secondary text-center font-extrabold">No registration needed!</p>
             </div>
           </div>
         </div>
