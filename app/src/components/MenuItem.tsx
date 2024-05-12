@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { MenuItemProps } from "@/types/components";
+
+export interface MenuItemProps {
+  title: string,
+  label: string,
+  imageSrc: string,
+}
 
 export default function MenuItem({title, label, imageSrc}: MenuItemProps) {
   return (

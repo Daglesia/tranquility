@@ -20,7 +20,7 @@ function Scene() {
   )
 }
 
-export default function Nebula() {
+export default function CloudCluster() {
   return (
     <Canvas camera={{
       position: [0, 0, 1],
