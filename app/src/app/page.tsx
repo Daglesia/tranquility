@@ -14,6 +14,9 @@ export default function Home() {
         <div className="absolute left-12 top-12">
           <MenuItem title={"Daglesia"} label={"created by"} imageSrc={Logo} />
         </div>
+        <div className="absolute right-12 top-12">
+          <SignIn />
+        </div>
         <div className="pl-24 pt-64 ml-4">
           <div className="flex flex-col gap-2 w-fit">
             <h1 className="text-h1 font-extrabold tracking-tighter">It’s time to stop the mundane.<br />
