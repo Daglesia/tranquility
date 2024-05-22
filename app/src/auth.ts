@@ -6,6 +6,7 @@ import type { NextAuthConfig } from "next-auth"
 
 const config = {
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
+  trustHost: true,
   providers: [
     GitHub,
   ],
