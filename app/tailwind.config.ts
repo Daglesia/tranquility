@@ -11,13 +11,15 @@ const config: Config = {
     createThemes({
       default: {
         'primary': '#83DEF0',
-        'background': '#202020',
+        'background': '#151515',
+        'background__variant--light': '#242424',
         'secondary': '#52DE7E',
         'secondary__variant--dark': '#5DBE7B',
       },
       grasp: {
         'primary': '#0ABFAD',
-        'background': '#202020',
+        'background': '#151515',
+        'background__variant--light': '#242424',
         'secondary': '#027373',
         'secondary__variant--dark': '#025159',
       }

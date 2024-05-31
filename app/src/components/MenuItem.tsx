@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export interface MenuItemProps {
+interface MenuItemProps {
   title: string,
   label: string,
   imageSrc: string,
@@ -13,7 +13,7 @@ export default function MenuItem({title, label, imageSrc}: MenuItemProps) {
               src={imageSrc}
               alt="Daglesium Logo"
               priority
-              className="max-w-12"
+              className="max-w-12 w-12 fill-primary"
             />
             <div className="flex flex-col justify-center">
                 <p className="text-p">{label}</p>
