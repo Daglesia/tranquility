@@ -1,0 +1,16 @@
+# {
+# 	debug
+# 	servers {
+# 		listener_wrappers {
+# 			proxy_protocol {
+# 				timeout 2s
+# 			}
+# 			tls
+# 		}
+# 		protocols h1 h2
+# 	}
+# }
+
+localhost {
+	reverse_proxy app:3000
+}
