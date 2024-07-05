@@ -25,6 +25,9 @@
 body {
   color: var(--color--tranquility__primary);
   background: var(--color--common__background);
+  font-family: "M PLUS 1", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
 }
 
 @layer utilities {
