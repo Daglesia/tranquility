@@ -7,6 +7,11 @@ body {
   background: var(--color__background);
 }
 
+.img-primary {
+  filter: brightness(0) saturate(100%) drop-shadow(0px 1000px 0 hsl(var(--color__primary)));
+  transform: translateY(-1000px);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

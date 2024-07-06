@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="default text-primary bg-background">
+    <html lang="en" className="default text-primary bg-background text-sm md:text-base">
       <body className={font.className}>{children}</body>
     </html>
   );
