@@ -1,5 +1,7 @@
 import { signIn } from "@/auth"
- 
+import GithubLogo from "@/assets/github.svg";
+import MenuItem from "@/components/MenuItem";
+
 export function SignIn() {
   return (
     <form
@@ -8,7 +10,7 @@ export function SignIn() {
         await signIn("github")
       }}
     >
-      <button type="submit">Signin with GitHub</button>
+      <button type="submit"><MenuItem imageSrc={GithubLogo} title="Sign in" /></button>
     </form>
   )
 } 

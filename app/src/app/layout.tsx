@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { Raleway } from "next/font/google";
+
+const font = Raleway({ subsets: ["latin"] });
 
 import "@/styles/globals.css";
 
@@ -13,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="default">
-      <body>{children}</body>
+    <html lang="en" className="default text-primary bg-background">
+      <body className={font.className}>{children}</body>
     </html>
   );
 }

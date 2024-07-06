@@ -23,7 +23,9 @@ const config: Config = {
         'secondary': '#027373',
         'secondary__variant--dark': '#025159',
       }
-    })
+    }, {
+      produceCssVariable: (colorName) => `--color__${colorName}`
+   })
   ],
   theme: {
     fontSize: {
