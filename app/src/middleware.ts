@@ -8,13 +8,13 @@ export default auth(async (req) => {
 
     if (nextPath === '/') {
         if (req.auth?.user?.id) {
-            return NextResponse.redirect(new URL('/home', req.url));
+            return NextResponse.redirect(new URL('/home', process.env.NEXT_CALLBACK_URL));
         }
     }
 
     if (AUTH_REQUIRED_ROUTES.includes(nextPath)) {
         if (!req.auth?.user?.id) {
-            return NextResponse.redirect(new URL('/', req.url));
+            return NextResponse.redirect(new URL('/', process.env.NEXT_CALLBACK_URL));
         }
     }
 })
