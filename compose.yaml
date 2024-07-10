@@ -5,8 +5,10 @@ services:
   caddy:
     image: caddy:2.8-alpine
     restart: unless-stopped
-    ports:
-      - "81:80"
-      - "444:443"
+    extends:
+      file: $PWD/caddy/${ENV_NAME:?error}/caddy.yaml
+      service: caddyapp
     volumes:
-      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/caddy/${ENV_NAME:?error}/Caddyfile:/etc/caddy/Caddyfile
+    env_file:
+      - $PWD/.env
