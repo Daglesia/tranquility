@@ -1,6 +1,5 @@
 import Logo from "@/assets/daglesium.svg";
 import MenuItem from "@/components/MenuItem";
-import Button from "@/components/Button";
 import CloudCluster from "@/components/CloudCluster";
 import { SignIn } from "@/components/SignIn";
 

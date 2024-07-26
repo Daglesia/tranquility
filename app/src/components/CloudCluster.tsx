@@ -7,7 +7,7 @@ import Cloud from '@/components/Cloud'
 
 function Scene() {
   const clouds = []
-  clouds.push(<Cloud position={[5,0,0]} rotation={[-0.2,0,0]} />)
+  clouds.push(<Cloud position={[5,0,0]} />)
 
   return (
     <>
