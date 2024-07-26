@@ -1,6 +1,8 @@
 services:
   app:
-    build: ./app/Dockerfile.local
+    build: 
+      context: $PWD/app
+      dockerfile: $PWD/app/Dockerfile.local
     volumes:
       - $PWD/app:/app/
     command: npm run dev
