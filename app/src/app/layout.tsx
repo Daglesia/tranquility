@@ -20,7 +20,10 @@ export default function RootLayout({
       lang="en"
       className="default text-primary bg-background text-sm md:text-base"
     >
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        {children}
+        <div className="space-grain absolute h-screen w-screen top-0 left-0 -z-20" />
+      </body>
     </html>
   );
 }
