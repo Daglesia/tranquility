@@ -1,7 +1,7 @@
 import Logo from "@/assets/daglesium.svg";
 import Image from "next/image";
 import MenuItem from "@/components/MenuItem";
-import Button from "@/components/Button";
+import TextButton from "@/components/TextButton";
 import CloudCluster from "@/components/CloudCluster";
 import { SignIn } from "@/components/SignIn";
 import Card from "@/components/Card";

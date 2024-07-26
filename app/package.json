@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest --root ./tests/unit"
+    "test": "vitest --root ./tests/unit",
+    "prettier": "npx prettier . --write"
   },
   "dependencies": {
     "@react-three/fiber": "^8.16.6",

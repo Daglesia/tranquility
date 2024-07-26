@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Button > matches snapshot 1`] = `
+exports[`TextButton > matches snapshot 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -11,7 +11,7 @@ exports[`Button > matches snapshot 1`] = `
         <p
           class="text-h3 font-extrabold text-background px-8"
         >
-          testbutton
+          textbutton
         </p>
       </button>
     </div>
@@ -23,7 +23,7 @@ exports[`Button > matches snapshot 1`] = `
       <p
         class="text-h3 font-extrabold text-background px-8"
       >
-        testbutton
+        textbutton
       </p>
     </button>
   </div>,
