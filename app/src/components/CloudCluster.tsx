@@ -1,26 +1,29 @@
-"use client";
+'use client'
 
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Euler } from 'three'
+import Cloud from '@/components/Cloud'
 
 function Scene() {
+  const clouds = []
+  clouds.push(<Cloud position={[5,0,0]} rotation={[-0.2,0,0]} />)
+
   return (
     <>
+      {clouds}
     </>
-  );
+  )
 }
 
-export default function CloudCluster() {
+export default function Nebula() {
   return (
-    <Canvas
-      camera={{
-        position: [0, 0, 1],
-        rotation: [1.16, -0.12, 0.27],
-      }}
-    >
+    <Canvas camera={{
+      position: [0, 0, 10],
+    }}>
       <Suspense fallback={null}>
         <Scene />
       </Suspense>
     </Canvas>
-  );
+  )
 }
