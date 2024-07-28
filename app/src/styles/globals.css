@@ -16,7 +16,8 @@ body {
 .space-grain {
   background-image: url("/sky.png");
   background-size: cover;
-  filter: invert(78%) sepia(86%) saturate(1517%) hue-rotate(169deg) brightness(111%) contrast(88%) blur(4px);
+  filter: invert(78%) sepia(86%) saturate(1517%) hue-rotate(169deg)
+    brightness(111%) contrast(88%) blur(4px);
   opacity: 0.3;
 }
 

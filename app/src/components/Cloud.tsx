@@ -1,25 +1,69 @@
-import { useLoader, useFrame, Vector3 } from "@react-three/fiber";
-import { useRef } from "react";
-import { TextureLoader, Mesh, BufferGeometry, MeshLambertMaterial, Euler } from "three";
+import * as THREE from "three";
+import { useMemo, useRef, useCallback } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, PointMaterial } from "@react-three/drei";
 
-export interface CloudProps {
-    position: Vector3,
+function Particles({ count }) {
+  const white = new THREE.Color("hotpink");
+  const orange = new THREE.Color("orange");
+  const [positions, colors] = useMemo(() => {
+    const positions = [...new Array(count * 3)].map(
+      () => 5 - Math.random() * 10,
+    );
+    const colors = [...new Array(count)].flatMap(() => orange.toArray());
+    return [new Float32Array(positions), new Float32Array(colors)];
+  }, [count]);
+
+  const points = useRef(null);
+  const hover = useCallback((e) => {
+    e.stopPropagation();
+    white.toArray(points.current.geometry.attributes.color.array, e.index * 3);
+    points.current.geometry.attributes.color.needsUpdate = true;
+  }, []);
+
+  const unhover = useCallback((e) => {
+    orange.toArray(points.current.geometry.attributes.color.array, e.index * 3);
+    points.current.geometry.attributes.color.needsUpdate = true;
+  }, []);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    positions.forEach(
+      (_, i) =>
+        (positions[i] += Math[i % 2 ? "sin" : "cos"](1000 * i + t) / 300),
+    );
+    points.current.geometry.attributes.position.needsUpdate = true;
+
+    console.log(points.current.geometry.attributes.color);
+    points.current.geometry.attributes.color.needsUpdate = true;
+  });
+
+  return (
+    <points ref={points} onPointerOver={hover} onPointerOut={unhover}>
+      <bufferGeometry>
+        <bufferAttribute
+          usage={THREE.DynamicDrawUsage}
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
+        <bufferAttribute
+          usage={THREE.DynamicDrawUsage}
+          attach="attributes-color"
+          args={[colors, 3]}
+        />
+      </bufferGeometry>
+      <PointMaterial
+        transparent
+        vertexColors
+        size={10}
+        sizeAttenuation={false}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </points>
+  );
 }
 
-export default function Cloud({ position }: CloudProps) {
-    const [colorMap, alphaMap] = useLoader(TextureLoader, ["/texture.png",'/smoke.png']);
-    const refMesh = useRef<Mesh<BufferGeometry, MeshLambertMaterial>>(null);
-
-    // useFrame(() => {
-    //     if (refMesh.current) {
-    //         refMesh.current.rotation.z += 0.0004;
-    //     }
-    // })
-
-    return <>
-        <mesh ref={refMesh} position={position} rotation={[-0.2,0,0]}>
-            <planeGeometry args={[10, 10]} />
-            <meshBasicMaterial alphaMap={alphaMap} color="red" transparent={true} opacity={0.3} />
-        </mesh>
-    </>
+export default function App() {
+  return <Particles count={1000} />;
 }
