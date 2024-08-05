@@ -1,69 +1,114 @@
-import * as THREE from "three";
-import { useMemo, useRef, useCallback } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, PointMaterial } from "@react-three/drei";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
+import { BufferAttribute, Color, TextureLoader } from "three";
 
-function Particles({ count }) {
-  const white = new THREE.Color("hotpink");
-  const orange = new THREE.Color("orange");
-  const [positions, colors] = useMemo(() => {
-    const positions = [...new Array(count * 3)].map(
-      () => 5 - Math.random() * 10,
-    );
-    const colors = [...new Array(count)].flatMap(() => orange.toArray());
-    return [new Float32Array(positions), new Float32Array(colors)];
-  }, [count]);
+const vertexShader = `uniform float u_time;
 
-  const points = useRef(null);
-  const hover = useCallback((e) => {
-    e.stopPropagation();
-    white.toArray(points.current.geometry.attributes.color.array, e.index * 3);
-    points.current.geometry.attributes.color.needsUpdate = true;
-  }, []);
+varying float vZ;
 
-  const unhover = useCallback((e) => {
-    orange.toArray(points.current.geometry.attributes.color.array, e.index * 3);
-    points.current.geometry.attributes.color.needsUpdate = true;
-  }, []);
+void main() {
+  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+  
+  modelPosition.y += sin(modelPosition.x * 5.0 + u_time * 3.0) * 0.1;
+  modelPosition.y += sin(modelPosition.z * 6.0 + u_time * 2.0) * 0.1;
+  
+  vZ = modelPosition.y;
 
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    positions.forEach(
-      (_, i) =>
-        (positions[i] += Math[i % 2 ? "sin" : "cos"](1000 * i + t) / 300),
-    );
-    points.current.geometry.attributes.position.needsUpdate = true;
+  vec4 viewPosition = viewMatrix * modelPosition;
+  vec4 projectedPosition = projectionMatrix * viewPosition;
 
-    console.log(points.current.geometry.attributes.color);
-    points.current.geometry.attributes.color.needsUpdate = true;
-  });
+  gl_Position = projectedPosition;
+}`
 
+
+const fragmentShader = `uniform vec3 u_colorA;
+uniform vec3 u_colorB;
+uniform sampler2D pointTexture;
+
+
+void main() {
+			vec4 color = texture2D( pointTexture, gl_PointCoord );
+
+			gl_FragColor = color;
+}`
+
+function PointsComponent({ positions }) {
+  const pointsRef = useRef();
+ useEffect(() => {
+    if (!pointsRef.current) return;
+
+    pointsRef.current.geometry.setAttribute('position', new BufferAttribute(positions, 3));
+  }, [positions]);
+
+  return <primitive ref={pointsRef} attach="points" />;
+}
+
+const MovingPlane = () => {
+  // // This reference will give us direct access to the mesh
+  // const mesh = useRef();
+
+  // const [map] = useLoader(TextureLoader, [
+  //   "/disc.png"
+  // ]);
+
+  // const uniforms = useMemo(
+  //   () => ({
+  //     u_time: {
+  //       value: 0.0,
+  //     },
+  //     u_colorA: { value: new Color("#FFE486") },
+  //     u_colorB: { value: new Color("#FEB3D9") },
+  //     pointTexture: {value: map},
+  //   }), []
+  // );
+
+  // useFrame((state) => {
+  //   const { clock } = state;
+  //   mesh.current.material.uniforms.u_time.value = clock.getElapsedTime();
+  // });
+
+  // import * as THREE from 'three';
+  // import { useRef } from 'react';
+  
+  // Define your shaders
+  const vertexShader = `
+    varying vec3 vPosition;
+    void main() {
+      vPosition = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+  
+  const fragmentShader = `
+    varying vec3 vPosition;
+    void main() {
+      // Example of coloring based on position
+      float intensity = dot(vPosition, vec3(0.0, 0.0, 1.0));
+      gl_FragColor = vec4(vec3(intensity), 1.0);
+    }
+  `;
+  
+  // Inside your component
+  const Positions = [...]; // Array of positions for your points
+  
   return (
-    <points ref={points} onPointerOver={hover} onPointerOut={unhover}>
-      <bufferGeometry>
-        <bufferAttribute
-          usage={THREE.DynamicDrawUsage}
-          attach="attributes-position"
-          args={[positions, 3]}
+    <Canvas>
+      <PointsComponent positions={Positions}>
+        <shaderMaterial
+          attachObject={['material']}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
         />
-        <bufferAttribute
-          usage={THREE.DynamicDrawUsage}
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
-      </bufferGeometry>
-      <PointMaterial
-        transparent
-        vertexColors
-        size={10}
-        sizeAttenuation={false}
-        depthWrite={false}
-        toneMapped={false}
-      />
-    </points>
+      </PointsComponent>
+    </Canvas>
   );
-}
+};
 
-export default function App() {
-  return <Particles count={1000} />;
-}
+const Scene = () => {
+  return (
+      <MovingPlane />
+  );
+};
+
+
+export default Scene;

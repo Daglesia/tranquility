@@ -17,9 +17,10 @@ export interface TentacleParticleProps {
   rotation: Euler;
 }
 
-const particlesCount = 5000;
+const particlesCount = 1000;
 const particlePositions = new Float32Array(particlesCount * 3);
 const uvPositions = new Float32Array(particlesCount * 3);
+const particleSizes = new Float32Array(particlesCount);
 
 const RADIUS_LARGE = 6;
 const RADIUS_SMALL = 4;
@@ -46,7 +47,7 @@ const randomNormalDistribution = (min: number, max: number, skew: number) => {
 
 for (let i = 0; i < particlesCount; i++) {
   const radius = randomNormalDistribution(RADIUS_SMALL, RADIUS_LARGE, 1);
-  const xValue = randomNormalDistribution(-radius, 0, 3);
+  const xValue = randomNormalDistribution(-radius, RADIUS_SMALL-0.2, 3);
 
   const yValue = Math.sqrt(Math.pow(radius, 2) - Math.pow(xValue, 2));
 
@@ -56,9 +57,11 @@ for (let i = 0; i < particlesCount; i++) {
   particlePositions[i3 + 1] = yValue - 2;
   particlePositions[i3 + 2] = 6;
 
-  uvPositions[i3] = 0.1;
-  uvPositions[i3 + 1] = 0.2;
-  uvPositions[i3 + 1] = 1;
+  const cosinusAlpha = yValue/radius;
+
+  uvPositions[i3] = (244 - (255*cosinusAlpha))/255;
+  uvPositions[i3 + 1] = (244 - (255*cosinusAlpha))/255;
+  uvPositions[i3 + 2] = 174/255;
 }
 
 // in other words, tenticle.
@@ -68,7 +71,7 @@ export const TentacleParticle = ({
 }: TentacleParticleProps) => {
   const [colorMap, alphaMap] = useLoader(TextureLoader, [
     "/gradient.png",
-    "/disc.png",
+    "/disk2.png",
   ]);
 
   console.log(colorMap)
@@ -77,8 +80,13 @@ export const TentacleParticle = ({
 
   useFrame((state) => {
     const t = state.clock.elapsedTime
-    particlePositions.forEach((_p, i) => (particlePositions[i] += Math[i % 2 ? 'sin' : 'cos'](1 * i + t) / 30000))
-    pointsRef.current.geometry.attributes.position.needsUpdate = true
+    //particlePositions.forEach((_p, i) => (particlePositions[i] += Math[i % 2 ? 'sin' : 'cos'](1 * i + t) / 20000))
+    // for (let i = 0; i < particlesCount; i++) {
+    //   const i3 = i * 3;
+
+    //   particlePositions[i3 + 2] += Math[i % 2 ? 'sin' : 'cos'](1 * i + t) / 1000;
+    // } 
+    // pointsRef.current.geometry.attributes.position.needsUpdate = true
   })
 
   return (
@@ -97,6 +105,12 @@ export const TentacleParticle = ({
             itemSize={3}
             array={uvPositions}
           />
+          <bufferAttribute
+            attach="attributes-size"
+            count={particlesCount}
+            itemSize={1}
+            array={particleSizes}
+          />
         </bufferGeometry>
         <pointsMaterial
                 transparent
@@ -104,7 +118,6 @@ export const TentacleParticle = ({
                 sizeAttenuation={false}
                 depthWrite={false}
                 toneMapped={false}
-          size={2}
           alphaMap={alphaMap}
         />
       </points>
