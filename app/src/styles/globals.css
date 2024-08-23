@@ -14,10 +14,21 @@ body {
 }
 
 .space-grain {
-  background-image: url("/sky.png");
-  background-size: cover;
-  filter: invert(78%) sepia(86%) saturate(1517%) hue-rotate(169deg) brightness(111%) contrast(88%) blur(4px);
-  opacity: 0.3;
+  background-image: url("/sky.jpg");
+  background-size: 110%;
+  /* filter: invert(78%) sepia(86%) saturate(1517%) hue-rotate(169deg)
+    brightness(111%) contrast(88%) blur(4px); */
+  opacity: 0.08;
+  animation: animatedBackground 100s ease infinite alternate;
+}
+
+@keyframes animatedBackground {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 
 @layer utilities {

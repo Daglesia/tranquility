@@ -10,7 +10,7 @@ export function SignIn() {
         await signIn("github");
       }}
     >
-      <button type="submit">
+      <button className="hover:bg-background__variant--light" type="submit">
         <MenuItem imageSrc={GithubLogo} title="Sign in" />
       </button>
     </form>

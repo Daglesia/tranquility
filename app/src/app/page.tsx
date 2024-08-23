@@ -5,6 +5,9 @@ import TextButton from "@/components/TextButton";
 import CloudCluster from "@/components/CloudCluster";
 import { SignIn } from "@/components/SignIn";
 import Card from "@/components/Card";
+import { Raleway } from "next/font/google";
+
+const font = Raleway({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -24,7 +27,7 @@ export default function Home() {
       <div className="w-screen min-h-screen">
         <div className="md:px-24 md:pt-64 mx-4">
           <div className="flex flex-col gap-2 w-fit">
-            <h1 className="text-h1 font-bold tracking-tighter md:text-base">
+            <h1 className={`text-h1 font-bold tracking-tighter md:text-base ${font.className}`}>
               Welcome to my domain.
             </h1>
             <h2 className="text-h2 font-light px-2">

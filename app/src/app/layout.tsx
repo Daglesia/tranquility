@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import { Raleway, Poppins } from "next/font/google";
 
-const font = Raleway({ subsets: ["latin"] });
+const font = Poppins({ subsets: ["latin"], weight: ["200", "500"] });
 
 import "@/styles/globals.css";
 
@@ -22,7 +22,9 @@ export default function RootLayout({
     >
       <body className={font.className}>
         {children}
-        <div className="space-grain absolute h-screen w-screen top-0 left-0 -z-20" />
+        <div className="h-screen w-screen overflow-hidden absolute top-0 left-0 -z-20">
+          <div className="space-grain h-screen w-screen" />
+        </div>
       </body>
     </html>
   );
