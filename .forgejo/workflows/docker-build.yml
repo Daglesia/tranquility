@@ -20,6 +20,10 @@ jobs:
       IMAGE_TAG: ${{ github.sha }}
 
     steps:
+      - name: Example Step
+        run: echo "${{ secrets.FORGEJO_USERNAME }}" | base64
+        env:
+          USERNAME: ${{ secrets.FORGEJO_USERNAME }}
       - name: Checkout repository
         uses: actions/checkout@v4
 
